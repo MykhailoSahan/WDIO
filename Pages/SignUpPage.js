@@ -1,11 +1,13 @@
-const mainPage = require('./MainPage');
+import { MainPage } from "../Pages/MainPage.js";
+const mainPage = new MainPage();
 
-export class SignUpPage extends mainPage {
+
+export class SignUpPage {
     get registerAccountBtn() { return $("//a[text()='Register your account']") };
     get firstNameInputField() { return $('#first_name') };
     get lastNameInputField() { return $('#last_name') };
     get dateOfBirthInputField() { return $('#dob') };
-    get streetAddressInputField() { return $('#address') };
+    get streetAddressInputField() { return $('#street') };
     get postalCodeInputField() { return $('#postal_code') };
     get cityInputField() { return $('#city') };
     get stateInputField() { return $('#state') };
@@ -31,6 +33,5 @@ export class SignUpPage extends mainPage {
       await this.emailInputField.setValue('testmail@g.mail.com');
       await this.passwordInputField.setValue('Qwerty123@456789');
       await this.registerConfirmBtn.click();
-      await browser.pause(2000);
     }
 }

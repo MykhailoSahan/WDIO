@@ -1,10 +1,10 @@
-const { config } = require('./wdio.conf.js');
+import { config as baseConfig } from './wdio.conf.js';
 
-config.capabilities = [{
+baseConfig.capabilities = [{
   browserName: 'firefox',
   'moz:firefoxOptions': {
     args: ['-headless']
   }
 }];
 
-exports.config = config;
+export const config = baseConfig;

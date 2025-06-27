@@ -9,6 +9,7 @@
     "firefox": "wdio run wdio.firefox.conf.js",
     "safari": "wdio run wdio.safari.conf.js"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",

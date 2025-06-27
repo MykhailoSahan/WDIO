@@ -1,10 +1,10 @@
-const { config } = require('./wdio.conf.js');
+import { config as baseConfig } from "./wdio.conf.js";
 
-config.capabilities = [{
+baseConfig.capabilities = [{
   browserName: 'chrome',
   'goog:chromeOptions': {
     args: ['--headless', '--disable-gpu', '--window-size=1920,1080']
   }
 }];
 
-exports.config = config;
+export const config = baseConfig;
