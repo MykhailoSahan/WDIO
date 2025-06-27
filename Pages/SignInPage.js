@@ -3,9 +3,9 @@ export class SignInPage {
     get passwordInputField() { return $('#password') };
     get signInBtn() { return $('button.btnSubmit.mb-3') };
 
-    async signIn() {
-        await this.emailAddressInputField.setValue('testmail@g.mail.com');
-        await this.passwordInputField.setValue('Qwerty123@456789');
+    async signIn(email, password) {
+        await this.emailAddressInputField.setValue(email); //TESTING@gmail.com
+        await this.passwordInputField.setValue(password); //12345Qwerty@789
         await this.signInBtn.click();
     }
 }

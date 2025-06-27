@@ -24,6 +24,6 @@ describe('Sign Up/In Page Tests', () => {
     })
 
     it("should sign in with the registered account", async () => {
-        await signInPage.signIn();
+        await signInPage.signIn('TESTING@gmail.com', '12345Qwerty@789');
     })
 })
