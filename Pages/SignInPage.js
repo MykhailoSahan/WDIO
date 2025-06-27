@@ -1,6 +1,4 @@
-const signUpPage = require('./SignUpPage');
-
-export class SignInPage extends signUpPage {
+export class SignInPage {
     get emailAddressInputField() { return $('#email') };
     get passwordInputField() { return $('#password') };
     get signInBtn() { return $('button.btnSubmit.mb-3') };
@@ -11,4 +9,3 @@ export class SignInPage extends signUpPage {
         await this.signInBtn.click();
     }
 }
-
