@@ -1,10 +1,12 @@
 import { MainPage } from "../../Pages/MainPage.js";
 import { SignUpPage } from "../../Pages/SignUpPage.js";
 import { SignInPage } from "../../Pages/SignInPage.js";
+import { UserProfileInfo } from "../../Pages/UserProfileInfo.js";
 
 const mainPage = new MainPage();
 const signUpPage = new SignUpPage();
 const signInPage = new SignInPage();
+const userProfileInfo = new UserProfileInfo();
 
 describe('Sign Up/In Page Tests', () => {
 
@@ -25,5 +27,19 @@ describe('Sign Up/In Page Tests', () => {
 
     it("should sign in with the registered account", async () => {
         await signInPage.signIn('TESTING@gmail.com', '12345Qwerty@789');
+        await browser.getTitle();
+        expect(await browser.getTitle()).toBe('Register - Practice Software Testing - Toolshop - v5.0');
     })
+
+    it("should update user profile information", async () => {
+        await userProfileInfo.updateProfile('as', 'le');
+        const firstName = await userProfileInfo.firstNameInputField.getValue();
+        const lastName = await userProfileInfo.lastNameInputField.getValue();
+        expect(firstName).toBe('Johnas');
+        expect(lastName).toBe('Doele');
+    })
+})
+
+describe('Tests with products', () => {
+    
 })
