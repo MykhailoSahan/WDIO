@@ -39,7 +39,3 @@ describe('Sign Up/In Page Tests', () => {
         expect(lastName).toBe('Doele');
     })
 })
-
-describe('Tests with products', () => {
-    
-})

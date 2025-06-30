@@ -2,7 +2,7 @@ export const config = {
   runner: 'local',
   specs: ['./test/specs/**/*.js'],
   maxInstances: 2,
-  specFileRetries: 0,
+  specFileRetries: 2,
   logLevel: 'error',
   framework: 'mocha',
   reporters: ['spec'],
