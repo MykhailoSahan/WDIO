@@ -1,8 +1,7 @@
-import { MainPage } from "../Pages/MainPage.js";
-const mainPage = new MainPage();
+import { BasePage } from "./BasePage.js";
+import { testData } from "../Data/testData.js";
 
-
-export class SignUpPage {
+export class SignUpPage extends BasePage {
     get registerAccountBtn() { return $("//a[text()='Register your account']") };
     get firstNameInputField() { return $('#first_name') };
     get lastNameInputField() { return $('#last_name') };
@@ -19,19 +18,19 @@ export class SignUpPage {
 
 
     async signUp() {
-      await mainPage.signInBtn.click();
-      await this.registerAccountBtn.click();
-      await this.firstNameInputField.setValue('John');
-      await this.lastNameInputField.setValue('Doe');
-      await this.dateOfBirthInputField.setValue('10102000'); // DDMMYYYY format
-      await this.streetAddressInputField.setValue('123 Main St');
-      await this.postalCodeInputField.setValue('12345');
-      await this.cityInputField.setValue('Test City');
-      await this.stateInputField.setValue('Test State');
-      await this.countryDropDown.selectByVisibleText('Ukraine');
-      await this.phoneNumberInputField.setValue('1234567890');
-      await this.emailInputField.setValue('testmail@g.mail.com');
-      await this.passwordInputField.setValue('Qwerty123@456789');
-      await this.registerConfirmBtn.click();
+        await this.signInBtn.click();
+        await this.registerAccountBtn.click();
+        await this.firstNameInputField.setValue(testData.user.firstName);
+        await this.lastNameInputField.setValue(testData.user.lastName);
+        await this.dateOfBirthInputField.setValue(testData.user.dateOfBirth);
+        await this.streetAddressInputField.setValue(testData.user.streetAddress);
+        await this.postalCodeInputField.setValue(testData.user.postalCode);
+        await this.cityInputField.setValue(testData.user.city);
+        await this.stateInputField.setValue(testData.user.state);
+        await this.countryDropDown.selectByVisibleText(testData.user.country);
+        await this.phoneNumberInputField.setValue(testData.user.phoneNumber);
+        await this.emailInputField.setValue(testData.user.email);
+        await this.passwordInputField.setValue(testData.user.password);
+        await this.registerConfirmBtn.click();
     }
 }

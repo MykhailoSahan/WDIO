@@ -1,6 +1,3 @@
-export class MainPage {
-    get signInBtn() { return $('//*[@id="navbarSupportedContent"]/ul/li[4]/a') };
-    get categorisDropDownBar() { return $('//*[@id="navbarSupportedContent"]/ul/li[3]/a') };
+export class MainPage extends BasePage {
     get searchInputField() { return $('#search-query') };
 }
-
