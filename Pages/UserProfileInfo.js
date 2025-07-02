@@ -1,13 +1,16 @@
-export class UserProfileInfo {
-    get profileBtn() { return $('.btn.btn-outline-secondary') };
-    get firstNameInputField() { return $('#first_name') };
-    get lastNameInputField() { return $('#last_name') };
-    get apdateProfileBtn() { return $('button[type="submit"]') };
+import { BasePage } from "./BasePage.js";
 
-    async updateProfile(updatefirstName, updatelastName) {
+export class UserProfileInfo extends BasePage {
+    get profileBtn() { return $('.btn.btn-outline-secondary') }
+    get firstNameInputField() { return $('#first_name') }
+    get lastNameInputField() { return $('#last_name') }
+    get updateProfileBtn() { return $('button[type="submit"]') }
+    get signInCheck() { return $('[data-test="page-title"]') }
+
+    async updateProfile(updateFirstName, updateLastName) {
         await this.profileBtn.click();
-        await this.firstNameInputField.addValue(updatefirstName);
-        await this.lastNameInputField.addValue(updatelastName);
-        await this.apdateProfileBtn.click();
+        await this.firstNameInputField.addValue(updateFirstName);
+        await this.lastNameInputField.addValue(updateLastName);
+        await this.updateProfileBtn.click();
     }
 }

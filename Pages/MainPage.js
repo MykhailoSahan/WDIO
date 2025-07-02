@@ -1,6 +1,14 @@
-export class MainPage {
-    get signInBtn() { return $('//*[@id="navbarSupportedContent"]/ul/li[4]/a') };
-    get categorisDropDownBar() { return $('//*[@id="navbarSupportedContent"]/ul/li[3]/a') };
-    get searchInputField() { return $('#search-query') };
-}
+import { BasePage } from './BasePage.js';
+const basePage = new BasePage();
 
+export class MainPage extends BasePage {
+    get searchInput() { return $('[data-test="search-query"]'); }
+    get searchBtn() { return $('[data-test="search-submit"]'); }
+    get selectProduct() { return $('img[alt="Combination Pliers"]') }
+    
+    async searchExactProduct(product) {
+        await basePage.open();
+        await this.searchInput.setValue(product);
+        await browser.keys('Enter');
+    }
+}
