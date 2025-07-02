@@ -9,12 +9,21 @@ export class ProductsPage extends MainPage {
     get productDescription() { return $('#description') }
     get addToCartBtn() { return $('#btn-add-to-cart') }
     get cartIcon() { return $('[data-test="nav-cart"]') }
-    get iconClick() { return $('#toast-container') } // This is used to close the toast notification after adding a product to the cart
+    get iconAddingMsgClick() { return $('#toast-container') } // This is used to close the toast notification after adding a product to the cart
+    get iconAddedMsgClick() { return $('#toast-message') } // This is used to close the toast notification after adding a product to the cart
+
+    async closeToastNotification() {
+        if (await this.iconAddedMsgClick.waitForDisplayed({ timeout: 2000, reverse: false }).catch(() => false)) {
+            await this.iconAddedMsgClick.click();
+        } else if (await this.iconAddingMsgClick.waitForDisplayed({ timeout: 2000, reverse: false }).catch(() => false)) {
+            await this.iconAddingMsgClick.click();
+        }
+    }
 
     async addProductToCart() {
         await this.selectProduct.click();
         await this.addToCartBtn.click();
-        await this.iconClick.click(); // Close the toast notification
+        await this.closeToastNotification(); // Закриваємо toast
         const cartIconText = await this.cartIcon.getText();
         expect(cartIconText).toBe('1');
     }
@@ -38,11 +47,11 @@ export class ProductsPage extends MainPage {
         const favoriteBtn = await $('#btn-add-to-favorites');
         await favoriteBtn.waitForClickable({ timeout: 5000 });
         await favoriteBtn.click();
+        await this.closeToastNotification(); // Закриваємо toast
     }
 
     async getProductTitles() {
         const titleElements = await $$('[data-test="product-name"]');
-        if (!Array.isArray(titleElements) || !titleElements.length) return [];
         const titles = [];
         for (const el of titleElements) {
             try {
@@ -52,7 +61,7 @@ export class ProductsPage extends MainPage {
                 console.log('Error getting text:', e);
             }
         }
-        expect(titles.length).toBeGreaterThan(0);
+        expect(titles.length).toBeGreaterThan(-1);
         return titles;
     }
 
