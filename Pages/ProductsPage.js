@@ -41,7 +41,6 @@ export class ProductsPage extends MainPage {
 
     async getProductTitles() {
         const titleElements = await $$('[data-test="product-name"]');
-        console.log('Titles found:', titleElements.length);
         if (!Array.isArray(titleElements) || !titleElements.length) return [];
         const titles = [];
         for (const el of titleElements) {
@@ -56,32 +55,20 @@ export class ProductsPage extends MainPage {
         return titles;
     }
 
+    async allProductsContain(text) {
+        const titles = await this.getProductTitles();
+        return titles.length > 0 && titles.every(title => title.includes(text));
+    }
+
     async getProductBrands() {
         const brandElements = await $$('span.badge.rounded-pill.bg-secondary.me-1');
         if (!brandElements.length) return [];
         return Promise.all(brandElements.map(el => el.getText()));
     }
 
-    async getProductCategories() {
-        // Якщо є data-test
-        const categoryElements = await $$('span.badge.rounded-pill.bg-primary.me-1');
-        if (!categoryElements.length) return [];
-        return Promise.all(categoryElements.map(el => el.getText()));
-    }
-
-    async allProductsContain(text) {
-        const titles = await this.getProductTitles();
-        return titles.length > 0 && titles.every(title => title.includes(text));
-    }
-
     async allProductsContainBrand(brand) {
         const brands = await this.getProductBrands();
         return brands.length > 0 && brands.every(b => b.includes(brand));
-    }
-
-    async logProductTitles() {
-        const titles = await this.getProductTitles();
-        console.log('Titles after filter:', titles);
     }
 
     async selectProductByName(name) {
@@ -93,6 +80,12 @@ export class ProductsPage extends MainPage {
             }
         }
         throw new Error(`Product with name "${name}" not found`);
+    }
+
+    async getProductCategories() {
+        const categoryElements = await $$('[data-test="filters"]');
+        if (!categoryElements.length) return [];
+        return Promise.all(categoryElements.map(el => el.getText()));
     }
 
     async verifyAllProductsInCategory(category) {

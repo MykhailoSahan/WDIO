@@ -28,16 +28,11 @@ describe('Test with Products', () => {
 
     it('Search exact product', async () => {
         await mainPage.searchExactProduct('hammer');
+        await productsPage.allProductsContain('hammer');
     })
 
-    it('should search for "Claw Hammer" and show correct results', async () => {
-        await basePage.open();
-        await mainPage.searchInput.setValue('Claw Hammer');
-        await mainPage.searchBtn.click();
-    });
-
-     it('should filter products by "Power Tools" category', async () => {
-        await basePage.open();
-        await sidebar.selectCategoryByName('Power Tools');
+     it('should filter products by category', async () => {
+        await sidebar.selectCategoryByName('ForgeFlex Tools');
+        await productsPage.allProductsContainBrand('ForgeFlex Tools');
     });
 })
