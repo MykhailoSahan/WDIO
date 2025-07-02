@@ -15,6 +15,7 @@ export class SidebarPage extends BasePage {
   }
 
   async selectBrandByName(name) {
+    await basePage.open();
     const label = await $(`//label[contains(normalize-space(.), "${name}")]`);
     await label.waitForDisplayed({ timeout: 3000 });
     const input = await label.$('input[type="checkbox"]');

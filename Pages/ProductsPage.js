@@ -9,10 +9,12 @@ export class ProductsPage extends MainPage {
     get productDescription() { return $('#description') }
     get addToCartBtn() { return $('#btn-add-to-cart') }
     get cartIcon() { return $('[data-test="nav-cart"]') }
+    get iconClick() { return $('#toast-container') } // This is used to close the toast notification after adding a product to the cart
 
     async addProductToCart() {
         await this.selectProduct.click();
         await this.addToCartBtn.click();
+        await this.iconClick.click(); // Close the toast notification
         const cartIconText = await this.cartIcon.getText();
         expect(cartIconText).toBe('1');
     }
@@ -27,7 +29,6 @@ export class ProductsPage extends MainPage {
     }
 
     async checkCartPrice() {
-        await browser.pause(5000);
         await this.cartIcon.click();
         const cartPrice = await $('[data-test="cart-total"]').getText();
         expect(cartPrice).toBe('$' + testData.productInfo.price);
