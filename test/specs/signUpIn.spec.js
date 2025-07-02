@@ -25,8 +25,7 @@ describe('Sign Up/In Page Tests', () => {
 
     it("should sign in with the registered account", async () => {
         await signInPage.signIn(testData.user.email, testData.user.password);
-        const title = await browser.getTitle();
-        expect(title).toBe('Register - Practice Software Testing - Toolshop - v5.0');
+        expect(userProfileInfo.signInCheck).toBeDisplayed();
     })
 
     it("should update user profile information", async () => {
