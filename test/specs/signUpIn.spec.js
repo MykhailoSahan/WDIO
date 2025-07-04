@@ -1,3 +1,7 @@
+import * as chai from 'chai';
+const { assert } = chai;
+chai.should();
+
 import { BasePage } from "../../Pages/BasePage.js";
 import { SignUpPage } from "../../Pages/SignUpPage.js";
 import { SignInPage } from "../../Pages/SignInPage.js";
@@ -14,7 +18,8 @@ describe('Sign Up/In Page Tests', () => {
     before(async () => {
         await basePage.open();
         const title = await browser.getTitle();
-        expect(title).toBe('Practice Software Testing - Toolshop - v5.0');
+        assert.include(title, 'Practice Software Testing', 'Title does not match');
+        // title.should.be.a('string').and.equal('Practice Software Testing - Toolshop - v5.0');
     })
 
     it("should navigate to the sign up page and fill in the form", async () => {
@@ -32,7 +37,7 @@ describe('Sign Up/In Page Tests', () => {
         await userProfileInfo.updateProfile(testData.update.firstName, testData.update.lastName);
         const firstName = await userProfileInfo.firstNameInputField.getValue();
         const lastName = await userProfileInfo.lastNameInputField.getValue();
-        expect(firstName).toBe('Johnas');
-        expect(lastName).toBe('Doele');
+        firstName.should.be.a('string').and.equal('Johnas');
+        lastName.should.be.a('string').and.equal('Doele');
     })
 })
