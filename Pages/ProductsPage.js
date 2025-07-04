@@ -1,7 +1,9 @@
+import * as chai from 'chai';
+const { expect, assert } = chai;
+chai.should();
+
 import { MainPage } from "./MainPage";
 import { testData } from "../Data/testData";
-import { BasePage } from "./BasePage";
-const basePage = new BasePage();
 
 export class ProductsPage extends MainPage {
     get productTitle() { return $('[data-test="product-name"]') }
@@ -23,31 +25,31 @@ export class ProductsPage extends MainPage {
     async addProductToCart() {
         await this.selectProduct.click();
         await this.addToCartBtn.click();
-        await this.closeToastNotification(); // Закриваємо toast
+        await this.closeToastNotification();
         const cartIconText = await this.cartIcon.getText();
-        expect(cartIconText).toBe('1');
+        expect(cartIconText).to.equal('1');
     }
 
     async verifyProductDetails() {
         const title = await this.productTitle.getText();
         const price = await this.productPrice.getText();
         const description = await this.productDescription.getText();
-        expect(title).toBe(testData.productInfo.title);
-        expect(price).toBe(testData.productInfo.price);
-        expect(description).toBe(testData.productInfo.description);
+        expect(title).to.equal(testData.productInfo.title);
+        expect(price).to.equal(testData.productInfo.price);
+        expect(description).to.equal(testData.productInfo.description);
     }
 
     async checkCartPrice() {
         await this.cartIcon.click();
         const cartPrice = await $('[data-test="cart-total"]').getText();
-        expect(cartPrice).toBe('$' + testData.productInfo.price);
+        expect(cartPrice).to.equal('$' + testData.productInfo.price);
     }
 
     async addToFavorites() {
         const favoriteBtn = await $('#btn-add-to-favorites');
         await favoriteBtn.waitForClickable({ timeout: 5000 });
         await favoriteBtn.click();
-        await this.closeToastNotification(); // Закриваємо toast
+        await this.closeToastNotification();
     }
 
     async getProductTitles() {
@@ -61,7 +63,7 @@ export class ProductsPage extends MainPage {
                 console.log('Error getting text:', e);
             }
         }
-        expect(titles.length).toBeGreaterThan(-1);
+        expect(titles.length).greaterThan(-1);
         return titles;
     }
 

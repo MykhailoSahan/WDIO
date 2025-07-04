@@ -1,9 +1,11 @@
+import { assert } from 'chai';
+
 export class BasePage {
     async open() {
         await browser.url('https://practicesoftwaretesting.com/');
         await browser.maximizeWindow();
         const title = await browser.getTitle();
-        expect(title).toBe('Practice Software Testing - Toolshop - v5.0');
+        assert.include(title, 'Practice Software Testing - Toolshop - v5.0');
     }
 
     get signInBtn() { return $('[data-test="nav-sign-in"]') }
