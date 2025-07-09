@@ -1,4 +1,4 @@
-import { config as baseConfig } from "./wdio.conf.js";
+import { config as baseConfig } from './wdio.conf.js';
 
 baseConfig.capabilities = [{
   browserName: 'chrome',
