@@ -6,7 +6,7 @@ import { BasePage } from "../../Pages/BasePage.js";
 import { SignUpPage } from "../../Pages/SignUpPage.js";
 import { SignInPage } from "../../Pages/SignInPage.js";
 import { UserProfileInfo } from "../../Pages/UserProfileInfo.js";
-import { testData } from "../../Data/testData.js";
+import { testData } from "../testData.js";
 
 const basePage = new BasePage();
 const signUpPage = new SignUpPage();

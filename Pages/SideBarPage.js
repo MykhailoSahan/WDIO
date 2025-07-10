@@ -1,4 +1,4 @@
-import { BasePage } from "./BasePage";
+import { BasePage } from "./BasePage.js";
 const basePage = new BasePage();
 
 export class SidebarPage extends BasePage {

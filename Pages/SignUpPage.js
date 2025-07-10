@@ -1,5 +1,5 @@
 import { BasePage } from "./BasePage.js";
-import { testData } from "../Data/testData.js";
+import { testData } from "../test/testData.js";
 
 export class SignUpPage extends BasePage {
     get registerAccountBtn() { return $("//a[text()='Register your account']") };

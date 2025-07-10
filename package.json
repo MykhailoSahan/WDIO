@@ -4,10 +4,10 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "wdio": "wdio run wdio.conf.js",
-    "chrome": "wdio run wdio.chrome.conf.js",
-    "firefox": "wdio run wdio.firefox.conf.js",
-    "safari": "wdio run wdio.safari.conf.js"
+    "wdio": "wdio run ./configs/wdio.conf.js",
+    "chrome": "wdio run ./configs/wdio.chrome.conf.js",
+    "firefox": "wdio run ./configs/wdio.firefox.conf.js",
+    "safari": "wdio run ./configs/wdio.safari.conf.js"
   },
   "type": "module",
   "keywords": [],
