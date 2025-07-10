@@ -3,7 +3,7 @@ const { expect, assert } = chai;
 chai.should();
 
 import { MainPage } from "./MainPage";
-import { testData } from "../test/testData.js";
+import { testData } from "../test/Test Data/testData.js";
 
 export class ProductsPage extends MainPage {
     get productTitle() { return $('[data-test="product-name"]') }

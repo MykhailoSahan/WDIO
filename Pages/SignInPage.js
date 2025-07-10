@@ -1,4 +1,6 @@
-export class SignInPage {
+import { BasePage } from "./BasePage";
+
+export class SignInPage extends BasePage {
     get emailAddressInputField() { return $('#email') };
     get passwordInputField() { return $('#password') };
     get signInBtn() { return $('button.btnSubmit.mb-3') };
