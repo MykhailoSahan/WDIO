@@ -5,7 +5,14 @@ export const config = {
   specFileRetries: 0,
   logLevel: 'error',
   framework: 'mocha',
-  reporters: ['spec'],
+  reporters: [
+  'spec',
+  ['html-nice', {
+    outputDir: './reports/html-reports',
+    filename: 'report.html',
+    reportTitle: 'WDIO HTML Report'
+  }]
+],
 
   mochaOpts: {
     ui: 'bdd',
