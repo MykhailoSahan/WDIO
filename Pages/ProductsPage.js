@@ -4,6 +4,8 @@ chai.should();
 
 import { MainPage } from './MainPage';
 import { testData } from '../test/Test Data/testData.js';
+import { MainPage } from './MainPage';
+import { testData } from '../test/Test Data/testData.js';
 
 export class ProductsPage extends MainPage {
   get productTitle() {
@@ -14,8 +16,10 @@ export class ProductsPage extends MainPage {
   }
   get productDescription() {
     return $('#description');
+    return $('#description');
   }
   get addToCartBtn() {
+    return $('#btn-add-to-cart');
     return $('#btn-add-to-cart');
   }
   get cartIcon() {
@@ -23,8 +27,10 @@ export class ProductsPage extends MainPage {
   }
   get iconAddingMsgClick() {
     return $('#toast-container');
+    return $('#toast-container');
   } // This is used to close the toast notification after adding a product to the cart
   get iconAddedMsgClick() {
+    return $('#toast-message');
     return $('#toast-message');
   } // This is used to close the toast notification after adding a product to the cart
 
@@ -50,6 +56,7 @@ export class ProductsPage extends MainPage {
     await this.closeToastNotification();
     const cartIconText = await this.cartIcon.getText();
     expect(cartIconText).to.equal('1');
+    expect(cartIconText).to.equal('1');
   }
 
   async verifyProductDetails() {
@@ -65,9 +72,11 @@ export class ProductsPage extends MainPage {
     await this.cartIcon.click();
     const cartPrice = await $('[data-test="cart-total"]').getText();
     expect(cartPrice).to.equal('$' + testData.productInfo.price);
+    expect(cartPrice).to.equal('$' + testData.productInfo.price);
   }
 
   async addToFavorites() {
+    const favoriteBtn = await $('#btn-add-to-favorites');
     const favoriteBtn = await $('#btn-add-to-favorites');
     await favoriteBtn.waitForClickable({ timeout: 5000 });
     await favoriteBtn.click();
@@ -83,6 +92,7 @@ export class ProductsPage extends MainPage {
         titles.push(text);
       } catch (e) {
         console.log('Error getting text:', e);
+        console.log('Error getting text:', e);
       }
     }
     expect(titles.length).greaterThan(-1);
@@ -95,6 +105,7 @@ export class ProductsPage extends MainPage {
   }
 
   async getProductBrands() {
+    const brandElements = await $$('span.badge.rounded-pill.bg-secondary.me-1');
     const brandElements = await $$('span.badge.rounded-pill.bg-secondary.me-1');
     if (!brandElements.length) return [];
     return Promise.all(brandElements.map((el) => el.getText()));
