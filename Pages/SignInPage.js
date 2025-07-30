@@ -1,14 +1,14 @@
-import { BasePage } from "./BasePage";
+import { BasePage } from './BasePage';
 
 export class SignInPage extends BasePage {
   get emailAddressInputField() {
-    return $("#email");
+    return $('#email');
   }
   get passwordInputField() {
-    return $("#password");
+    return $('#password');
   }
   get signInBtn() {
-    return $("button.btnSubmit.mb-3");
+    return $('button.btnSubmit.mb-3');
   }
 
   async signIn(email, password) {

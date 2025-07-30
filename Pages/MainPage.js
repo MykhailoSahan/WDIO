@@ -1,4 +1,4 @@
-import { BasePage } from "./BasePage.js";
+import { BasePage } from './BasePage.js';
 const basePage = new BasePage();
 
 export class MainPage extends BasePage {
@@ -15,6 +15,6 @@ export class MainPage extends BasePage {
   async searchExactProduct(product) {
     await basePage.open();
     await this.searchInput.setValue(product);
-    await browser.keys("Enter");
+    await browser.keys('Enter');
   }
 }

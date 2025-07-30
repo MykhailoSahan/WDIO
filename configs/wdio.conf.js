@@ -1,18 +1,18 @@
 export const config = {
-  runner: "local",
-  specs: ["../test/specs/**/*.js"],
+  runner: 'local',
+  specs: ['../test/specs/**/*.js'],
   maxInstances: 2,
   specFileRetries: 0,
-  logLevel: "error",
-  framework: "mocha",
+  logLevel: 'error',
+  framework: 'mocha',
   reporters: [
-    "spec",
+    'spec',
     [
-      "html-nice",
+      'html-nice',
       {
-        outputDir: "./reports/html-reports",
-        filename: "report.html",
-        reportTitle: "Test Report Title",
+        outputDir: './reports/html-reports',
+        filename: 'report.html',
+        reportTitle: 'Test Report Title',
         showInBrowser: true,
         collapseTests: true,
       },
@@ -20,7 +20,7 @@ export const config = {
   ],
 
   mochaOpts: {
-    ui: "bdd",
+    ui: 'bdd',
     timeout: 60000,
   },
 };
