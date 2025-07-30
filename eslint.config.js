@@ -1,19 +1,21 @@
-import js from "@eslint/js";
-import globals from "globals";
-import { defineConfig } from "eslint/config";
+import js from '@eslint/js';
+import globals from 'globals';
+import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
   {
-    files: ["**/*.js"],
+    files: ['**/*.js'],
     plugins: { js },
-    extends: ["js/recommended"],
+    extends: ['js/recommended'],
     languageOptions: {
       globals: {
         ...globals.node,
         ...globals.mocha,
         browser: true,
-        expect: true
-      }
-    }
+        expect: true,
+        $: true,
+        $$: true,
+      },
+    },
   },
 ]);

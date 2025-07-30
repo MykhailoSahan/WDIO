@@ -1,14 +1,14 @@
-import { BasePage } from "./BasePage.js";
+import { BasePage } from './BasePage.js';
 
 export class UserProfileInfo extends BasePage {
   get profileBtn() {
-    return $(".btn.btn-outline-secondary");
+    return $('.btn.btn-outline-secondary');
   }
   get firstNameInputField() {
-    return $("#first_name");
+    return $('#first_name');
   }
   get lastNameInputField() {
-    return $("#last_name");
+    return $('#last_name');
   }
   get updateProfileBtn() {
     return $('button[type="submit"]');
