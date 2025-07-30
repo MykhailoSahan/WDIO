@@ -2,8 +2,12 @@ import { BasePage } from "./BasePage.js";
 const basePage = new BasePage();
 
 export class SidebarPage extends BasePage {
-  get categoryFilter() { return $$('[data-test="category-filter"] input[type="checkbox"]'); }
-  get brandFilter() { return $$('[data-test="brand-filter"] input[type="checkbox"]'); }
+  get categoryFilter() {
+    return $$('[data-test="category-filter"] input[type="checkbox"]');
+  }
+  get brandFilter() {
+    return $$('[data-test="brand-filter"] input[type="checkbox"]');
+  }
 
   async selectCategoryByName(name) {
     await basePage.open();
