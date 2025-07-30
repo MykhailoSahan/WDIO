@@ -1,395 +1,362 @@
 {
-	"info": {
-		"_postman_id": "331e88b0-11f6-48e1-ab0e-16ab5ed53bff",
-		"name": "Booking_Tests",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "44395419",
-		"_collection_link": "https://mykhailo-5401626.postman.co/workspace/3fb1a213-d5f7-43e5-80cf-4f01627157bb/collection/44395419-331e88b0-11f6-48e1-ab0e-16ab5ed53bff?action=share&source=collection_link&creator=44395419"
-	},
-	"item": [
-		{
-			"name": "Auth",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Content-Type is matches\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
-							"});\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"Body matches string\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"token\");\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\" : \"admin\",\r\n    \"password\" : \"password123\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/auth",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"auth"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get_Booking_List",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Content-Type is matches\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
-							"});\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"Body matches string\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"bookingid\");\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "482d9764c4124d9",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/booking",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"booking"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create_Booking",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"let response = pm.response.json();\r",
-							"pm.environment.set(\"bookingId\", response.bookingid)\r",
-							"\r",
-							"pm.test(\"Content-Type is matches\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
-							"});\r",
-							"pm.test(\"Booking is created\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"Correct contact is returned\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"Sahan\");\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "482d9764c4124d9",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"firstname\": \"Mykhailo\",\r\n    \"lastname\": \"Sahan\",\r\n    \"totalprice\": 99,\r\n    \"depositpaid\": true,\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2025-01-02\",\r\n        \"checkout\": \"2025-01-03\"\r\n    },\r\n    \"additionalneeds\": \"extra towel\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/booking",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"booking"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get_created_booking_by_ID",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Content-Type is matches\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
-							"});\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"Body matches string\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"Sahan\");\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "482d9764c4124d9",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/booking/{{bookingId}}",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"booking",
-						"{{bookingId}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update_bokking_Info",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Content-Type is present\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
-							"});\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"pm.test(\"Body matches string\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"extra\");\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "password123",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"firstname\": \"Mykhailo\",\r\n    \"lastname\": \"Sahan\",\r\n    \"totalprice\": 99,\r\n    \"depositpaid\": true,\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2025-01-02\",\r\n        \"checkout\": \"2025-01-04\"\r\n    },\r\n    \"additionalneeds\": \"extra towel and a bottle of rose wine\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/booking/{{bookingId}}",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"booking",
-						"{{bookingId}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete_booking",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Content-Type is present\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\", \"text/plain; charset=utf-8\");\r",
-							"});\r",
-							"pm.test(\"Body matches string\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"Created\");\r",
-							"});\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"    pm.response.to.have.status(201);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "password123",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{baseURL}}/booking/{{bookingId}}",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"booking",
-						"{{bookingId}}"
-					]
-				}
-			},
-			"response": []
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "baseURL",
-			"value": "https://restful-booker.herokuapp.com",
-			"type": "default"
-		}
-	]
+  "info": {
+    "_postman_id": "331e88b0-11f6-48e1-ab0e-16ab5ed53bff",
+    "name": "Booking_Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "44395419",
+    "_collection_link": "https://mykhailo-5401626.postman.co/workspace/3fb1a213-d5f7-43e5-80cf-4f01627157bb/collection/44395419-331e88b0-11f6-48e1-ab0e-16ab5ed53bff?action=share&source=collection_link&creator=44395419"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Content-Type is matches\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+              "});\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Body matches string\", function () {\r",
+              "    pm.expect(pm.response.text()).to.include(\"token\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\" : \"admin\",\r\n    \"password\" : \"password123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/auth",
+          "host": ["{{baseURL}}"],
+          "path": ["auth"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get_Booking_List",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Content-Type is matches\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+              "});\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Body matches string\", function () {\r",
+              "    pm.expect(pm.response.text()).to.include(\"bookingid\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "482d9764c4124d9",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/booking",
+          "host": ["{{baseURL}}"],
+          "path": ["booking"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create_Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "pm.environment.set(\"bookingId\", response.bookingid)\r",
+              "\r",
+              "pm.test(\"Content-Type is matches\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+              "});\r",
+              "pm.test(\"Booking is created\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Correct contact is returned\", function () {\r",
+              "    pm.expect(pm.response.text()).to.include(\"Sahan\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "482d9764c4124d9",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"firstname\": \"Mykhailo\",\r\n    \"lastname\": \"Sahan\",\r\n    \"totalprice\": 99,\r\n    \"depositpaid\": true,\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2025-01-02\",\r\n        \"checkout\": \"2025-01-03\"\r\n    },\r\n    \"additionalneeds\": \"extra towel\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/booking",
+          "host": ["{{baseURL}}"],
+          "path": ["booking"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get_created_booking_by_ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Content-Type is matches\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+              "});\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Body matches string\", function () {\r",
+              "    pm.expect(pm.response.text()).to.include(\"Sahan\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "482d9764c4124d9",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/booking/{{bookingId}}",
+          "host": ["{{baseURL}}"],
+          "path": ["booking", "{{bookingId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update_bokking_Info",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Content-Type is present\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+              "});\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Body matches string\", function () {\r",
+              "    pm.expect(pm.response.text()).to.include(\"extra\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "password123",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"firstname\": \"Mykhailo\",\r\n    \"lastname\": \"Sahan\",\r\n    \"totalprice\": 99,\r\n    \"depositpaid\": true,\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2025-01-02\",\r\n        \"checkout\": \"2025-01-04\"\r\n    },\r\n    \"additionalneeds\": \"extra towel and a bottle of rose wine\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/booking/{{bookingId}}",
+          "host": ["{{baseURL}}"],
+          "path": ["booking", "{{bookingId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete_booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Content-Type is present\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"text/plain; charset=utf-8\");\r",
+              "});\r",
+              "pm.test(\"Body matches string\", function () {\r",
+              "    pm.expect(pm.response.text()).to.include(\"Created\");\r",
+              "});\r",
+              "pm.test(\"Status code is 201\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "password123",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/booking/{{bookingId}}",
+          "host": ["{{baseURL}}"],
+          "path": ["booking", "{{bookingId}}"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseURL",
+      "value": "https://restful-booker.herokuapp.com",
+      "type": "default"
+    }
+  ]
 }
