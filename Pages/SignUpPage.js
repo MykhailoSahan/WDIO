@@ -1,45 +1,45 @@
-import { BasePage } from "./BasePage.js";
-import { testData } from "../test/Test Data/testData.js";
+import { BasePage } from './BasePage.js';
+import { testData } from '../test/Test Data/testData.js';
 
 export class SignUpPage extends BasePage {
   get registerAccountBtn() {
     return $("//a[text()='Register your account']");
   }
   get firstNameInputField() {
-    return $("#first_name");
+    return $('#first_name');
   }
   get lastNameInputField() {
-    return $("#last_name");
+    return $('#last_name');
   }
   get dateOfBirthInputField() {
-    return $("#dob");
+    return $('#dob');
   }
   get streetAddressInputField() {
-    return $("#street");
+    return $('#street');
   }
   get postalCodeInputField() {
-    return $("#postal_code");
+    return $('#postal_code');
   }
   get cityInputField() {
-    return $("#city");
+    return $('#city');
   }
   get stateInputField() {
-    return $("#state");
+    return $('#state');
   }
   get countryDropDown() {
-    return $("#country");
+    return $('#country');
   }
   get phoneNumberInputField() {
-    return $("#phone");
+    return $('#phone');
   }
   get emailInputField() {
-    return $("#email");
+    return $('#email');
   }
   get passwordInputField() {
-    return $("#password");
+    return $('#password');
   }
   get registerConfirmBtn() {
-    return $("button.btnSubmit.mb-3");
+    return $('button.btnSubmit.mb-3');
   }
 
   async signUp() {
