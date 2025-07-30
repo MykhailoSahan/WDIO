@@ -12,8 +12,10 @@ export default defineConfig([
         ...globals.node,
         ...globals.mocha,
         browser: true,
-        expect: true
-      }
-    }
+        expect: true,
+        $: true,
+        $$: true,
+      },
+    },
   },
 ]);
