@@ -7,20 +7,12 @@ export const config = {
   logLevel: 'error',
   framework: 'cucumber',
   capabilities: [
-    // {
-    //   maxInstances: 1,
-    //   browserName: 'chrome'
-    // },
     {
-    browserName: 'firefox',
-    'moz:firefoxOptions': {
-      args: ['-headless'],
-    },
-  },
-    // {
-    //   maxInstances: 1,
-    //   browserName: 'safari'
-    // }
+      browserName: 'firefox',
+      'moz:firefoxOptions': {
+        args: ['-headless'],
+      }
+    }
   ],
   cucumberOpts: {
     require: ['./step-definitions/**/*.steps.js'],
