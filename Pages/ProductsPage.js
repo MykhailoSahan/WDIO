@@ -23,10 +23,10 @@ export class ProductsPage extends MainPage {
   }
   get iconAddingMsgClick() {
     return $('#toast-container');
-  } // This is used to close the toast notification after adding a product to the cart
+  }
   get iconAddedMsgClick() {
     return $('#toast-message');
-  } // This is used to close the toast notification after adding a product to the cart
+  }
 
   async closeToastNotification() {
     if (
@@ -42,6 +42,10 @@ export class ProductsPage extends MainPage {
     ) {
       await this.iconAddingMsgClick.click();
     }
+  }
+
+  async isOpen() {
+    return await this.productTitle.isDisplayed();
   }
 
   async addProductToCart() {

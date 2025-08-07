@@ -17,10 +17,12 @@ export class UserProfileInfo extends BasePage {
     return $('[data-test="page-title"]');
   }
 
-  async updateProfile(updateFirstName, updateLastName) {
+  async updateProfile(firstName, lastName) {
     await this.profileBtn.click();
-    await this.firstNameInputField.addValue(updateFirstName);
-    await this.lastNameInputField.addValue(updateLastName);
+    await this.firstNameInputField.clearValue();
+    await this.firstNameInputField.setValue(firstName);
+    await this.lastNameInputField.clearValue();
+    await this.lastNameInputField.setValue(lastName);
     await this.updateProfileBtn.click();
   }
 }

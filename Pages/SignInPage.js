@@ -1,4 +1,4 @@
-import { BasePage } from './BasePage';
+import { BasePage } from './BasePage.js';
 
 export class SignInPage extends BasePage {
   get emailAddressInputField() {
@@ -8,7 +8,11 @@ export class SignInPage extends BasePage {
     return $('#password');
   }
   get signInBtn() {
-    return $('button.btnSubmit.mb-3');
+    return $('.btnSubmit');
+  }
+
+  async isOpen() {
+    return await this.emailAddressInputField.isDisplayed();
   }
 
   async signIn(email, password) {
